@@ -18,20 +18,29 @@ class Person
     end
 
     def guess_name
-        for i in 0..@name.length
-            puts @name[i]
-        end
-    end
+        guessed_name = ""
+        alphabet = "abcdefghijklmnopqrstuvwxyz"
 
+        for i in 0...@name.length
+            puts "Se va a intentar adivinar la letra #{@name[i]}"
+
+            for j in 0...alphabet.length
+                puts "Comparando letra #{alphabet[j]} con #{@name[i]}"
+                if alphabet[j] == @name[i]
+                    puts "COINCIDENCIA"
+                    guessed_name.concat(alphabet[j].to_s)
+                    puts "Adivinado actual: #{guessed_name}"
+                    break
+                end
+            end
+
+        end
+
+        guessed_name
+    end
 end
 
 
-alan = Person.new("Alan", "Gonzalez", 23)
+alan = Person.new("alan", "gonzalez", 23)
 
-# alan.name = "Alan"
-# alan.lastname = "Gonzalez"
-# alan.age = 23
-
-puts alan.full_name
-alan.print_birthdays
-alan.guess_name
+puts "El nombre adivinado final es: #{alan.guess_name}"
