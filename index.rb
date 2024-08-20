@@ -11,24 +11,23 @@ class Person
         "#{@name} #{@lastname}"
     end
 
-    def print_birthdays
-        for i in 1..@age
-            puts "Cumpleaños ##{i}"
-        end
+    def is_adult
+        @age >= 18
     end
 
     def guess_name
         guessed_name = ""
         alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-        for i in 0...@name.length
+        for i in 0 ... @name.length
+            # puts @name[i].ord
             puts "Se va a intentar adivinar la letra #{@name[i]}"
 
-            for j in 0...alphabet.length
+            for j in 0 ... alphabet.length
                 puts "Comparando letra #{alphabet[j]} con #{@name[i]}"
                 if alphabet[j] == @name[i]
                     puts "COINCIDENCIA"
-                    guessed_name.concat(alphabet[j].to_s)
+                    guessed_name << alphabet[j].to_s
                     puts "Adivinado actual: #{guessed_name}"
                     break
                 end
@@ -41,6 +40,12 @@ class Person
 end
 
 
-alan = Person.new("alan", "gonzalez", 23)
+alan = Person.new("ALAN", "gonzalez", 23)
 
 puts "El nombre adivinado final es: #{alan.guess_name}"
+
+if alan.is_adult
+    puts "#{alan.name} es un adulto mayor de edad"
+else
+    puts "#{alan.name} es menor de edad"
+end
