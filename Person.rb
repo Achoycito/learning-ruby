@@ -2,8 +2,8 @@ class Person
     attr_accessor :name, :lastname, :age
 
     def initialize(name, lastname, age)
-        @name = name
-        @lastname = lastname
+        @name = name.upcase
+        @lastname = lastname.upcase
         @age = age
     end
 
@@ -17,7 +17,7 @@ class Person
 
     def guess_name
         guessed_name = ""
-        alphabet = "abcdefghijklmnopqrstuvwxyz"
+        alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
         for i in 0 ... @name.length
             # puts @name[i].ord
