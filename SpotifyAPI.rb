@@ -1,14 +1,14 @@
-require 'uri'
-require 'net/http'
+require 'json'
+require 'rest-client'
 
-url = URI("https://api.spotify.com/v1/albums/64xtjfsPHNHch0CZ7fPTjS")
+spot_uri = "64xtjfsPHNHch0CZ7fPTjS" #Carrie & Lowell (Sufjan Stevens)
 
-http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = true
+url = "https://api.spotify.com/v1/albums/#{spot_uri}"
+auth = {"Authorization": "Bearer BQCxMc7DRgrv_Q9DJWck6GWofpMk372Fglo-_TQWdw7FNDelB-8tN0oaxv8yMqFKqe1P6K4KzATOlbDVHiW4dxCHEJK-KlpcHFzPAD7vmmFp3eVxGI09gccJ8C-Mhjl2B3Z_KwO2leBsOeGmQwMLGvmBcHEUBfKDRJPjPcFGRiKvu2ReyfHwYnAn2kiwntEWSnsZRqURJVlNtGQKYDblW1K-a3E"}
 
-request = Net::HTTP::Get.new(url)
-request["accept"] = 'application/json'
-request["token"] = 'c22d5bca36be476d9fe0ef767e6619a3'
+response = RestClient.get(url, headers=auth)
+results = JSON.parse(response.to_str)
+results_pretty = JSON.pretty_generate(results)
 
-response = http.request(request)
-puts response.read_body
+# puts results
+puts results_pretty
