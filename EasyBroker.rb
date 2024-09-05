@@ -6,7 +6,7 @@ def printResults response
 
   if results['pagination']['total'] > 0
     puts "\n\n"
-    puts "Mostrando #{results['pagination']['total']} propiedades en la cuenta de Staging en la API de EasyBroker (pág. #{results['pagination']['page']})"
+    puts "Mostrando #{results['pagination']['total']} propiedad#{'es' if results['pagination']['total'] > 1} en la cuenta de Staging en la API de EasyBroker (pág. #{results['pagination']['page']})"
   
     results['content'].each.with_index 1 do |property, index|
       puts "#{index}. #{property['title']}"
